@@ -42,7 +42,7 @@ jobs:
 
       - name: Generate Version
         id: version
-        run: echo "::set-output name=version::$(date +'%Y%m%d%H%M%S')"
+        run: echo "::set-output name=version::$(date +'%Y-%m-%d-%Hh-%M-%S')"
 
       - name: setup SSH key
         uses: webfactory/ssh-agent@v0.5.0
@@ -51,7 +51,7 @@ jobs:
 
       - name: Deploy APK
         run: |
-          cd app/build/outputs/apk/release
+          cd MonApp/android/app/build/outputs/apk/release
           apkFileName="app-release-${{ steps.version.outputs.version }}.apk"
           mv app-release.apk $apkFileName
-          scp -r -o StrictHostKeyChecking=no $apkFileName ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }}
+          scp -o StrictHostKeyChecking=no ./$apkFileName ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }}
