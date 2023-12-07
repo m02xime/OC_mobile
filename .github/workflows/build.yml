@@ -25,7 +25,7 @@ jobs:
 
       - name: Set execute permissions for gradlew
         run: |
-          cd mon-app/android
+          cd MonApp/android
           chmod +x gradlew
 
       - name: APK React Native App
