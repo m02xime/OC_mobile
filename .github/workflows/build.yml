@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Release APK
         run: |
-          cd mon-app/android
+          cd MonApp/android
           ./gradlew assembleRelease
       
 
