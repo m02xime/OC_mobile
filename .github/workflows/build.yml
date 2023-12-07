@@ -25,13 +25,6 @@ jobs:
           java-version: '17'
 
       # Other steps...
-
-      - name: Build Release APK
-        run: |
-          cd MonApp/android
-          ./gradlew assembleRelease
-      
-
       - name: Install Dependencies
         run: |
           cd MonApp
