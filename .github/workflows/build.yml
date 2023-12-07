@@ -20,13 +20,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd AwesomeProject
+          cd MonApp
           npm install
 
-      - name: Build React Native App
+      - name: APK React Native App
         run: |
-          cd AwesomeProject
-          npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+          cd MonApp/android
+          ./gradlew assembleRelease
 
       - name: setup SSH key
         uses: webfactory/ssh-agent@v0.5.0
@@ -35,5 +35,5 @@ jobs:
 
       - name: Deploy APK
         run: |
-          cd AwesomeProject/android/app/build/outputs/apk/release
-          scp -o StrictHostKeyChecking=no app-release.apk ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }}
+          cd MonApp/android/app/build/outputs/apk/release
+          scp -r -o StrictHostKeyChecking=no ./app-release.apk ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }}
