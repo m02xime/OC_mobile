@@ -23,6 +23,11 @@ jobs:
           cd MonApp
           npm install
 
+      - name: Set execute permissions for gradlew
+        run: |
+          cd mon-app/android
+          chmod +x gradlew
+
       - name: APK React Native App
         run: |
           cd MonApp/android
