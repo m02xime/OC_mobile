@@ -17,6 +17,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Other steps...
+
+      - name: Build Release APK
+        run: |
+          cd mon-app/android
+          ./gradlew assembleRelease
       
 
       - name: Install Dependencies
